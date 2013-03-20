@@ -6,14 +6,13 @@
 package userBean;
 
 
-import toDoEJB.Comment;
-import toDoEJB.CommentControllerLocal;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import toDoEJB.ListUser;
+import toDoEJB.ListUserControllerLocal;
 
 /**
  *
@@ -22,26 +21,26 @@ import javax.inject.Named;
 @Named(value="listUser")
 @SessionScoped
 public class ListUserBean implements Serializable {
-private String name;
+private String username;
 private String password;
 
-@EJB ListUserController users;
+@EJB ListUserControllerLocal users;
     /** Creates a new instance of VisitorBean */
     public ListUserBean(){
         
     }
 
     public ListUserBean(String name, String password) {
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String name) {
+        this.username = name;
     }
 
     public String getPassword() {
@@ -55,8 +54,8 @@ private String password;
 
     public String submit() {
         ListUser user = new ListUser();
-        user.setName(getName());
-        user.setComment(getComment());
+        user.setUsername(getUsername());
+        user.setPassword(getPassword());
         user.setCreationTime(new Date());
         users.add(user);
         return "index.xhtml";
