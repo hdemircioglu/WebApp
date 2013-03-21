@@ -2,9 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package userBean;
-
 
 import java.io.Serializable;
 import java.util.List;
@@ -60,19 +58,27 @@ private String password;
         ListUser user = new ListUser();
         user.setUsername(getUsername());
         user.setPassword(getPassword());
-        users.add(user);
-        return "userList.xhtml";
+        if(users.checkName(getUsername())){
+            users.add(user);
+            return "userList.xhtml";  
+        }
+        else {
+            return "registration.xhtml";
+        }
+       
     }
 
     public String delete(ListUser user) {
-        System.out.println("Hasaaaaaan");
         users.delete(user);
         return "userList.xhtml";
     }
     
     public String login() {
-        return "task.xhtml";
-        
+        if(users.checkLogin(getUsername(), getPassword())){
+            return "task.xhtml";
+        }
+        else {
+            return "registration.xhtml";
+        }       
     }
-
 }
