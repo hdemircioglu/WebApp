@@ -65,7 +65,6 @@ private String password;
         else {
             return "registration.xhtml";
         }
-       
     }
 
     public String delete(ListUser user) {
@@ -74,11 +73,13 @@ private String password;
     }
     
     public String login() {
+        System.out.println("HEEEEYOO");
         if(users.checkLogin(getUsername(), getPassword())){
-            return "task.xhtml";
+            return "registration.xhtml";
         }
         else {
-            return "registration.xhtml";
+            
+            return "task.xhtml";
         }       
     }
 }
