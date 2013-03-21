@@ -7,7 +7,7 @@ package userBean;
 
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -30,8 +30,8 @@ private String password;
         
     }
 
-    public ListUserBean(String name, String password) {
-        this.username = name;
+    public ListUserBean(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -39,8 +39,8 @@ private String password;
         return username;
     }
 
-    public void setUsername(String name) {
-        this.username = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -50,13 +50,26 @@ private String password;
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public ListUserControllerLocal getUsers() {
+        return users;
+    }
+
+    public void setUsers(ListUserControllerLocal users) {
+        this.users = users;
+    }
+    
+    public List<ListUser> getUSers() {
+        return users.list();
+    }
+    
     
 
     public String submit() {
+        System.out.println("AMK HASAN");
         ListUser user = new ListUser();
         user.setUsername(getUsername());
         user.setPassword(getPassword());
-        user.setCreationTime(new Date());
         users.add(user);
         return "index.xhtml";
     }
