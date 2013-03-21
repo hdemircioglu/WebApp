@@ -50,33 +50,22 @@ private String password;
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public ListUserControllerLocal getUsers() {
-        return users;
-    }
-
-    public void setUsers(ListUserControllerLocal users) {
-        this.users = users;
-    }
     
-    public List<ListUser> getUSers() {
+    public List<ListUser> getUsers() {
         return users.list();
     }
     
-    
-
     public String submit() {
-        System.out.println("AMK HASAN");
         ListUser user = new ListUser();
         user.setUsername(getUsername());
         user.setPassword(getPassword());
         users.add(user);
-        return "index.xhtml";
+        return "userList.xhtml";
     }
 
     public String delete(ListUser user) {
         users.delete(user);
-        return "index.xhtml";
+        return "userList.xhtml";
     }
 
 }
