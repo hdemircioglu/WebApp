@@ -34,6 +34,7 @@ private String password;
         this.username = username;
         this.password = password;
     }
+    
 
     public String getUsername() {
         return username;
@@ -64,6 +65,7 @@ private String password;
     }
 
     public String delete(ListUser user) {
+        System.out.println("Hasaaaaaan");
         users.delete(user);
         return "userList.xhtml";
     }
