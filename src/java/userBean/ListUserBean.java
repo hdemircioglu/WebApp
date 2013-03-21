@@ -69,5 +69,10 @@ private String password;
         users.delete(user);
         return "userList.xhtml";
     }
+    
+    public String login() {
+        return "task.xhtml";
+        
+    }
 
 }

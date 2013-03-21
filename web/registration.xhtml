@@ -8,6 +8,32 @@
     </h:head>
     <h:body>
         <h:form>
+            <table>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <h:inputText value="#{listUser.username}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Comment:
+                </td>
+                <td>
+                    <h:inputSecret value="#{listUser.password}"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td> <h:commandButton action="#{listUser.login()}" value="Login" /> </td>
+            </tr>
+
+        </table>
+            
+            
+            
         <table>
             <tr>
                 <td>

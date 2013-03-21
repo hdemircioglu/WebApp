@@ -1,14 +1,17 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
+    <head>
+        <title>Tasks</title>
+    </head>
     <h:body>
-        <h:form>   
-        <h:commandButton action="registration.xhtml" value="Back" />
+        <h:form>       
         <h:dataTable value="#{listUser.users}" var="user">
             <h:column>
                 <f:facet name="header">Name</f:facet>
@@ -23,10 +26,6 @@
                 <h:commandButton action="#{listUser.delete(user)}" value="Delete" />
             </h:column>
         </h:dataTable>
-            
-            
         </h:form>
-        
     </h:body>
 </html>
-
