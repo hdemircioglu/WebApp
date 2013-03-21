@@ -24,7 +24,7 @@
             </tr>
             <tr>
                 <td>
-                    Comment:
+                    Password:
                 </td>
                 <td>
                     <h:inputSecret value="#{listUser.password}"/>
@@ -35,8 +35,9 @@
                 <td> <h:commandButton action="#{listUser.login()}" value="Log in" /> </td>
             </tr>
         </table>
+        </h:form>
             
-            
+        <h:form>
         <table>
             <tr>
                 <td>
@@ -64,5 +65,6 @@
             </tr>
         </table>
         </h:form>
+        
     </h:body>
 </html>
