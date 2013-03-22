@@ -1,24 +1,122 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-    <head>
-        <title>Tasks</title>
-    </head>
+    <h:head>
+        <title>Visitors Book</title>
+    </h:head>
     <h:body>
         <h:form>
-            <table>     
+        <table>
             <tr>
                 <td>
-                    <h4>Task Page</h4> 
+                    Task Name:
+                </td>
+                <td>
+                    <h:inputText value="#{task.title}"/>
                 </td>
             </tr>
-            </table>
+            <tr>
+                <td>
+                    Task Priority:
+                </td>
+                <td>
+                    <h:inputText value="#{task.priority}"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    Task Optional Notes:
+                </td>
+                <td>
+                    <h:inputTextarea value="#{task.optionalNotes}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+		  Due Date : 
+                </td>
+                <td>
+                    <h:inputText id="date" value="#{task.dueDate}" 
+			size="20" required="true"
+			label="Receipt Date" >
+ 
+			<f:convertDateTime pattern="d-M-yyyy" />
+		  </h:inputText>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    Assigned User:
+                </td>
+                <td>
+                    <h:inputText value="#{task.assignedUser}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Requesting User:
+                </td>
+                <td>
+                    <h:inputText value="#{task.requestingUser}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td>
+                    Completion Flag:
+                </td>
+                <td>
+                    <h:selectBooleanCheckbox value="#{task.completionFlag}"/>
+                </td>
+
+            </tr>
+            
+            <tr>
+                <td> <h:commandButton action="#{task.addTask()}" value="Add Task" /> </td>
+            </tr>
+
+        </table>
+            <h:dataTable value="#{task.tasks}" var="task">
+            <h:column>
+                <f:facet name="header">Priority</f:facet>
+                #{task.priority}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{task.title}
+            </h:column>
+                        <h:column>
+                <f:facet name="header">Due Date</f:facet>
+                #{task.dueDate}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Assigned User</f:facet>
+                #{task.assignedUser}
+            </h:column>                
+            <h:column>
+                <f:facet name="header">Requesting User</f:facet>
+                #{task.requestingUser}
+            </h:column>
+            
+            <h:column>
+                <f:facet name="header">Completed?</f:facet>
+                #{task.completionFlag}
+            </h:column>
+                
+            <h:column>
+                <f:facet name="header">Controls</f:facet>
+                <h:commandButton action="#{task.delete(task)}" value="delete" />
+            </h:column>
+        </h:dataTable>
         </h:form>
     </h:body>
 </html>

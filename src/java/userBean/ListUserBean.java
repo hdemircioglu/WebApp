@@ -11,8 +11,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
-import toDoEJB.ListUser;
-import toDoEJB.ListUserControllerLocal;
+import UserEJB.ListUser;
+import UserEJB.ListUserControllerLocal;
 
 /**
  *
@@ -88,9 +88,6 @@ private String password;
     }
     
     public String login() {
-        System.out.println("HEEEEYOO");
-        System.out.println(getUsername());
-        System.out.println(getPassword());
         if(users.checkLogin(getUsername(), getPassword())){
             return "registration.xhtml";
         }
