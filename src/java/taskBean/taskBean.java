@@ -132,6 +132,12 @@ public class taskBean implements Serializable{
         
     }
     
+    public String editTask (TaskEntity task){
+        tasks.update(task);
+        
+        return "task.xhtml";
+    }
+    
     
     
     
