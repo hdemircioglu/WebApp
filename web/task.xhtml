@@ -4,7 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
-        <title>Visitors Book</title>
+        <title>To Do List</title>
     </h:head>
     <h:body>
         <h:form>
@@ -14,7 +14,7 @@
                     Task Name:
                 </td>
                 <td>
-                    <h:inputText value="#{task.title}"/>
+                    <h:inputText value="#{taskBean.title}"/>
                 </td>
             </tr>
             <tr>
@@ -22,16 +22,19 @@
                     Task Priority:
                 </td>
                 <td>
-                    <h:inputText value="#{task.priority}"/>
+                    <h:selectOneMenu value="#{taskBean.priority}">
+                            <f:selectItem itemValue="1" itemLabel="1" />
+                            <f:selectItem itemValue="2" itemLabel="2" />
+                            <f:selectItem itemValue="3" itemLabel="3" />
+                    </h:selectOneMenu>
                 </td>
-
             </tr>
             <tr>
                 <td>
                     Task Optional Notes:
                 </td>
                 <td>
-                    <h:inputTextarea value="#{task.optionalNotes}"/>
+                    <h:inputTextarea value="#{taskBean.optionalNotes}"/>
                 </td>
 
             </tr>
@@ -41,7 +44,7 @@
 		  Due Date : 
                 </td>
                 <td>
-                    <h:inputText id="date" value="#{task.dueDate}" 
+                    <h:inputText id="date" value="#{taskBean.dueDate}" 
 			size="20" required="true"
 			label="Receipt Date" >
  
@@ -55,7 +58,7 @@
                     Assigned User:
                 </td>
                 <td>
-                    <h:inputText value="#{task.assignedUser}"/>
+                    <h:inputText value="#{taskBean.assignedUser}"/>
                 </td>
 
             </tr>
@@ -65,7 +68,7 @@
                     Requesting User:
                 </td>
                 <td>
-                    <h:inputText value="#{task.requestingUser}"/>
+                    <h:inputText value="#{taskBean.requestingUser}"/>
                 </td>
 
             </tr>
@@ -75,17 +78,20 @@
                     Completion Flag:
                 </td>
                 <td>
-                    <h:selectBooleanCheckbox value="#{task.completionFlag}"/>
+                    <h:selectBooleanCheckbox value="#{taskBean.completionFlag}"/>
                 </td>
 
             </tr>
             
             <tr>
-                <td> <h:commandButton action="#{task.addTask()}" value="Add Task" /> </td>
+                <td> <h:commandButton action="#{taskBean.addTask()}" value="Add Task" /> </td>
             </tr>
-
+        
         </table>
-            <h:dataTable value="#{task.tasks}" var="task">
+        </h:form>   
+        
+        <h:form>
+            <h:dataTable value="#{taskBean.tasks}" var="task">
             <h:column>
                 <f:facet name="header">Priority</f:facet>
                 #{task.priority}
@@ -114,7 +120,7 @@
                 
             <h:column>
                 <f:facet name="header">Controls</f:facet>
-                <h:commandButton action="#{task.delete(task)}" value="delete" />
+                <h:commandButton action="#{taskBean.deleteTask(task)}" value="delete" />
             </h:column>
         </h:dataTable>
         </h:form>

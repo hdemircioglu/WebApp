@@ -18,7 +18,7 @@ import taskEJB.TaskEntityControllerLocal;
  * @author muratmenevse
  */
 
-@Named(value="task")
+@Named(value="taskBean")
 @SessionScoped
 public class taskBean implements Serializable{
     
