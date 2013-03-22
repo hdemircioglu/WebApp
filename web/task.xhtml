@@ -4,9 +4,11 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
     <h:head>
+        
         <title>To Do List</title>
     </h:head>
     <h:body>
+        <h:outputStylesheet library="css" name="table-style.css"  />
         <h:form>
         <table>
             <tr>
@@ -91,7 +93,10 @@
         </h:form>   
         
         <h:form>
-            <h:dataTable value="#{taskBean.tasks}" var="task">
+            <h:dataTable value="#{taskBean.tasks}" var="task"
+                styleClass="order-table"
+    		headerClass="order-table-header"
+    		rowClasses="order-table-odd-row,order-table-even-row">
             <h:column>
                 <f:facet name="header">Priority</f:facet>
                 #{task.priority}
@@ -112,15 +117,17 @@
                 <f:facet name="header">Requesting User</f:facet>
                 #{task.requestingUser}
             </h:column>
-            
             <h:column>
                 <f:facet name="header">Completed?</f:facet>
                 #{task.completionFlag}
             </h:column>
-                
             <h:column>
                 <f:facet name="header">Controls</f:facet>
                 <h:commandButton action="#{taskBean.deleteTask(task)}" value="delete" />
+            </h:column>
+            <h:column>
+                <f:facet name="header">Controls</f:facet>
+                <h:commandButton action="#{taskBean.editTask(task)}" value="update" />
             </h:column>
         </h:dataTable>
         </h:form>
