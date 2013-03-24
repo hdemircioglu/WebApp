@@ -13,6 +13,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import UserEJB.ListUser;
 import UserEJB.ListUserControllerLocal;
+import java.util.ArrayList;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerBeanRemote;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerException;
 import uk.ac.susx.inf.ianw.webApps.taskBroker.entity.Username;
@@ -76,6 +77,16 @@ public class ListUserBean implements Serializable {
         List<String> getUsers = users.usernamesList(); 
         String[] userNames = getUsers.toArray(new String[getUsers.size()]); 
         return userNames;
+    }
+    
+    public ArrayList<String> getUsernames2() {
+        ArrayList<String> newA = new ArrayList<String>();
+        for (String user:getUsernames()){
+            newA.add(users2.getUsername(user).getName());
+        }
+        return newA;
+        
+        
     }
     
     public String submit() throws TaskBrokerException {

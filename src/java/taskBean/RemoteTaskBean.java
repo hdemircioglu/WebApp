@@ -26,7 +26,7 @@ public class RemoteTaskBean implements Serializable{
     private String description;
     private String allocated;
     private String proposer;
-    private short completed;
+    private boolean completed;
     
     @EJB TaskBrokerBeanRemote tasks;
 
@@ -34,15 +34,46 @@ public class RemoteTaskBean implements Serializable{
         
     }
     
-    public RemoteTaskBean(Date dueDate, String description, 
-            String allocated, String proposer, short completed) {
+    public RemoteTaskBean(Date dueDate, String description,
+            String allocated, String proposer, boolean completed) {
         this.dueDate = dueDate;
         this.description = description;
+        /*
+        this.description = "Priority: " + priority + "\n Title: " + title + "\n Optional Notes: " + optionalNotes + "\n" ;
+        this.priority = priority;
+        this.title = title;
+        this.optionalNotes = optionalNotes;
+        */
         this.allocated = allocated;
         this.proposer = proposer;
         this.completed = completed;
     }
+/*
+    public int getPriority() {
+        return priority;
+    }
 
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getOptionalNotes() {
+        return optionalNotes;
+    }
+
+    public void setOptionalNotes(String optionalNotes) {
+        this.optionalNotes = optionalNotes;
+    }
+    * */
+    
     public Date getDueDate() {
         return dueDate;
     }
@@ -56,7 +87,7 @@ public class RemoteTaskBean implements Serializable{
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description ;
     }
 
     public String getAllocated() {
@@ -75,11 +106,11 @@ public class RemoteTaskBean implements Serializable{
         this.proposer = proposer;
     }
 
-    public short getCompleted() {
+    public boolean getCompleted() {
         return completed;
     }
 
-    public void setCompleted(short completed) {
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 
@@ -94,15 +125,22 @@ public class RemoteTaskBean implements Serializable{
         Task task = new Task();
         task.setDueDate(getDueDate());
         task.setDescription(getDescription());
-        tasks.allocateTask(task, getAllocated());
+        tasks.allocateTask(task, getProposer());
         
-        return "task.xhtml";
+        return "task2.xhtml";
+    }
+    
+    public String collectTask(Task task) throws TaskBrokerException{
+        
+        tasks.collectTask(task.getId(), getAllocated());
+        
+        return "task2.xhtml";
     }
     
     public String deleteTask(Task task) throws TaskBrokerException{
         tasks.abandonTask(task.getId());
         
-        return "task.xhtml";
+        return "task2.xhtml";
         
     }
     

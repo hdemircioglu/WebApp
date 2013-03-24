@@ -24,6 +24,19 @@
             </h:column>
         </h:dataTable>
         </h:form>
+        <h:form>   
+        <h:commandButton action="registration.xhtml" value="Back" />
+        <h:dataTable value="#{listUser.usernames2}" var="user2">
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                #{user2}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Controls</f:facet>
+            </h:column>
+        </h:dataTable>
+        </h:form>
+        
         
     </h:body>
 </html>
