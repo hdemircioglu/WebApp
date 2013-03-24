@@ -13,7 +13,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import UserEJB.ListUser;
 import UserEJB.ListUserControllerLocal;
-
+import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerBeanRemote;
+import uk.ac.susx.inf.ianw.webApps.taskBroker.ejb.TaskBrokerException;
+import uk.ac.susx.inf.ianw.webApps.taskBroker.entity.Username;
 /**
  *
  * @author muratmenevse
@@ -21,10 +23,11 @@ import UserEJB.ListUserControllerLocal;
 @Named(value="listUser")
 @SessionScoped
 public class ListUserBean implements Serializable {
-private String username;
-private String password;
+    private String username;
+    private String password;
 
-@EJB ListUserControllerLocal users;
+    @EJB ListUserControllerLocal users;
+    @EJB TaskBrokerBeanRemote users2;
     /** Creates a new instance of VisitorBean */
     public ListUserBean(){
         
@@ -69,12 +72,21 @@ private String password;
         return users.list();
     }
     
-    public String submit() {
+    public String[] getUsernames() {
+        List<String> getUsers = users.usernamesList(); 
+        String[] userNames = getUsers.toArray(new String[getUsers.size()]); 
+        return userNames;
+    }
+    
+    public String submit() throws TaskBrokerException {
         ListUser user = new ListUser();
         user.setUsername(getUsername());
         user.setPassword(getPassword());
         if(users.checkName(getUsername())){
             users.add(user);
+            System.out.println("Burdayiiiiiim");
+            users2.registerUsers(getUsernames());
+            System.out.println("Burdayiiiiiim2");
             return "userList.xhtml";  
         }
         else {
@@ -82,8 +94,9 @@ private String password;
         }
     }
 
-    public String delete(ListUser user) {
+    public String delete(ListUser user) throws TaskBrokerException {
         users.delete(user);
+        users2.registerUsers(getUsernames());
         return "userList.xhtml";
     }
     

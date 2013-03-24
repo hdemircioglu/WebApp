@@ -86,7 +86,11 @@
             </tr>
             
             <tr>
-                <td> <h:commandButton action="#{taskBean.addTask()}" value="Add Task" /> </td>
+                <td> <h:commandButton action="#{taskBean.addTask()}" value="Add Task">
+                        <f:actionListener binding="#{RemoteTaskBean.addTask()}"/>
+                    
+                    </h:commandButton> 
+                </td>
             </tr>
         
         </table>
